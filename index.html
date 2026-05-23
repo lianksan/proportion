@@ -1,168 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
-  <title>Paulik Liankevich — Software Designer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="style-typo.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proportion</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Fixed top nav -->
-  <nav class="nav">
-    <div class="nav-tabs">
-      <a href="index.html" class="tab active">About me</a>
-      <a href="cases.html" class="tab">Cases</a>
-      <a href="shots.html" class="tab">Shots</a>
-      <a href="materials.html" class="tab">Materials</a>
+<main>
+  <div class="proportion">
+    <div class="fraction">
+      <div class="cell-wrapper" id="wrapR">
+        <span class="cell-label">A</span>
+        <input class="cell" id="cellR" type="text" inputmode="decimal" pattern="[0-9.,]*" placeholder="A" data-index="0" autofocus>
+        <div class="hotkey-hint hint-bottom"><kbd>R</kbd> or <kbd>A</kbd></div>
+        <div class="cell-result" id="resultR"></div>
+      </div>
+      <div class="fraction-bar">
+        <svg viewBox="0 0 400 10" preserveAspectRatio="none"><line x1="2" y1="6" x2="70" y2="3" /><line x1="70" y1="3" x2="160" y2="7" /><line x1="160" y1="7" x2="260" y2="3" /><line x1="260" y1="3" x2="398" y2="5.5" /></svg>
+      </div>
+      <div class="cell-wrapper" id="wrapF">
+        <div class="hotkey-hint hint-top"><kbd>F</kbd> or <kbd>B</kbd></div>
+        <span class="cell-label">B</span>
+        <input class="cell" id="cellF" type="text" inputmode="decimal" pattern="[0-9.,]*" placeholder="B" data-index="1">
+        <div class="cell-result" id="resultF"></div>
+      </div>
     </div>
-  </nav>
 
-  <!-- Main content -->
-  <main class="main">
+    <div class="equals-wrap" id="equalsWrap">
+      <svg class="equals-svg" viewBox="0 0 50 40">
+        <line x1="3" y1="14.2" x2="12" y2="13.8" />
+        <line x1="12" y1="13.8" x2="28" y2="14.5" />
+        <line x1="28" y1="14.5" x2="38" y2="13.7" />
+        <line x1="38" y1="13.7" x2="47" y2="14.3" />
+        <line x1="3" y1="25.8" x2="15" y2="26.3" />
+        <line x1="15" y1="26.3" x2="30" y2="25.6" />
+        <line x1="30" y1="25.6" x2="40" y2="26.2" />
+        <line x1="40" y1="26.2" x2="47" y2="25.8" />
+      </svg>
+      <div class="equals-strike"></div>
+    </div>
 
-    <!-- About section -->
-    <section id="about" class="section section-about">
-
-      <div class="toggle" id="themeToggle" role="button" aria-label="Switch theme" tabindex="0">
-        <div class="toggle-photo">
-          <img class="photo-light" src="assets/image_light_mode.png" alt="Paulik Liankevich" />
-          <img class="photo-dark" src="assets/image_dark_mode.png" alt="Paulik Liankevich" />
-        </div>
-        <div class="toggle-knob">
-          <div class="knob-icon knob-sun" id="lottieSun"></div>
-          <div class="knob-icon knob-moon" id="lottieMoon"></div>
-        </div>
+    <div class="fraction">
+      <div class="cell-wrapper" id="wrapU">
+        <span class="cell-label">C</span>
+        <input class="cell" id="cellU" type="text" inputmode="decimal" pattern="[0-9.,]*" placeholder="C" data-index="2">
+        <div class="hotkey-hint hint-bottom"><kbd>U</kbd> or <kbd>C</kbd></div>
+        <div class="cell-result" id="resultU"></div>
       </div>
-
-      <h1 class="h1">
-        Software designer<br />Paulik Liankevich
-      </h1>
-
-      <p class="body-text">
-        I mean I'm a UX/UI designer with a penchant for development. Currently based in Vilnius and open for new projects.
-      </p>
-
-      <div class="buttons">
-        <button class="btn" id="emailBtn">
-          <svg class="btn-icon btn-icon--checkmark" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 1L3.66668 7L1.00004 4.00002" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span id="emailText">p_lenkevich@gmail.com</span>
-          <svg class="btn-icon btn-icon--copy btn-icon--copy-outline" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 5V4C5 2.34315 6.34315 1 8 1H12C13.6569 1 15 2.34315 15 4V10C15 11.6569 13.6569 13 12 13H11M4 17H8C9.65685 17 11 15.6569 11 14V8C11 6.34315 9.65685 5 8 5H4C2.34315 5 1 6.34315 1 8V14C1 15.6569 2.34315 17 4 17Z" stroke="currentColor" stroke-width="2"/></svg>
-          <svg class="btn-icon btn-icon--copy btn-icon--copy-fill" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 8C1 6.34315 2.34315 5 4 5H8C9.65685 5 11 6.34315 11 8V14C11 15.6569 9.65685 17 8 17H4C2.34315 17 1 15.6569 1 14V8Z" fill="currentColor"/><path d="M5 5V4C5 2.34315 6.34315 1 8 1H12C13.6569 1 15 2.34315 15 4V10C15 11.6569 13.6569 13 12 13H11M4 17H8C9.65685 17 11 15.6569 11 14V8C11 6.34315 9.65685 5 8 5H4C2.34315 5 1 6.34315 1 8V14C1 15.6569 2.34315 17 4 17Z" stroke="currentColor" stroke-width="2"/></svg>
-        </button>
-        <a href="https://t.me/paulikl" target="_blank" class="btn">
-          Telegram
-          <svg class="btn-icon btn-icon--arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 1L1 9M9 1V6.6M9 1H3.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="https://github.com/paulikl" target="_blank" class="btn">
-          GitHub
-          <svg class="btn-icon btn-icon--arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 1L1 9M9 1V6.6M9 1H3.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="https://buymeacoffee.com/paulikl" target="_blank" class="btn">
-          Buy me a coffee
-          <svg class="btn-icon btn-icon--arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 1L1 9M9 1V6.6M9 1H3.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+      <div class="fraction-bar">
+        <svg viewBox="0 0 400 10" preserveAspectRatio="none"><line x1="2" y1="4" x2="90" y2="7" /><line x1="90" y1="7" x2="200" y2="3" /><line x1="200" y1="3" x2="310" y2="6" /><line x1="310" y1="6" x2="398" y2="3.5" /></svg>
       </div>
-    </section>
-
-    
-
-    <!-- Experience section -->
-    <section class="section section-experience">
-      <!-- <h2 class="h2">Experience</h2> -->
-
-      <div class="experience-layout">
-      <div class="skills-track">
-        <div class="skills-train">
-          <div class="skill-icon skill-icon--wide" data-top="0"><img src="assets/soft/htmls-css.svg" alt="HTML & CSS"></div>
-          <div class="skill-icon" data-top="2"><img src="assets/soft/ps.svg" alt="Photoshop"></div>
-          <div class="skill-icon" data-top="23"><img src="assets/soft/figma.svg" alt="Figma"></div>
-          <div class="skill-icon" data-top="35"><img src="assets/soft/ae.svg" alt="After Effects"></div>
-          <div class="skill-icon skill-icon--wide" data-top="58"><img src="assets/soft/swift.svg" alt="Swift"></div>
-          <!-- <div class="skill-icon" data-top="84"><img src="assets/soft/github.svg" alt="GitHub"></div> -->
-          <div class="skill-icon" data-top="95"><img src="assets/soft/claude.svg" alt="Claude"></div>
-        </div>
+      <div class="cell-wrapper" id="wrapJ">
+        <div class="hotkey-hint hint-top"><kbd>J</kbd> or <kbd>D</kbd></div>
+        <span class="cell-label">D</span>
+        <input class="cell" id="cellJ" type="text" inputmode="decimal" pattern="[0-9.,]*" placeholder="D" data-index="3">
+        <div class="cell-result" id="resultJ"></div>
       </div>
+    </div>
+  </div>
 
-      <div class="timeline">
-        <div class="timeline-item timeline-item--small">
-          <div class="timeline-dot"></div>
-          <div class="timeline-line"></div>
-          <h4 class="timeline-year">2016</h4>
-          <p class="body-text">Got hooked on web design and development in high school. Built first layouts, explored design tools, and realized this was the direction to pursue.</p>
-        </div>
+  <div id="goodValues" class="good-values"></div>
+</main>
 
-        <div class="timeline-item timeline-item--small">
-          <div class="timeline-dot"></div>
-          <div class="timeline-line"></div>
-          <h4 class="timeline-year">2018</h4>
-          <p class="body-text">Started freelancing — delivering graphic design and web solutions for independent clients.</p>
-        </div>
+<footer>
+  <div class="credit">
+    Developed by <a href="https://liankevich.com" target="_blank" class="credit-link"><img src="me.png" alt="" class="credit-avatar"><span>Paulik</span></a> and&nbsp;<a href="https://claude.ai/new" target="_blank"><span>Claude</span></a>
+  </div>
+</footer>
 
-        <div class="timeline-item timeline-item--large">
-          <div class="timeline-dot"></div>
-          <div class="timeline-line"></div>
-          <div class="timeline-heading">
-            <span>2019–2021</span>
-            <span>Web-designer at WebCat</span>
-          </div>
-          <p class="body-text">Designed end-to-end marketing materials for a lead generation company — including landing pages, quiz pages, banners, posters, and print collateral. Expanded into motion design, producing dynamic animated banners in After Effects.</p>
-        </div>
-
-        <div class="timeline-item timeline-item--large">
-          <div class="timeline-dot"></div>
-          <div class="timeline-line"></div>
-          <div class="timeline-heading">
-            <span>2021–2022</span>
-            <span>UI/UX Designer at Zetreex</span>
-          </div>
-          <p class="body-text">Owned the full product design cycle for in-house mobile apps — from competitor research and user flows to interactive prototypes, design systems, and App Store visuals.</p>
-        </div>
-
-        <div class="timeline-item timeline-item--small">
-          <div class="timeline-dot"></div>
-          <div class="timeline-line"></div>
-          <h4 class="timeline-year">2023</h4>
-          <p class="body-text">Expanded into iOS development — learning Swift and mobile engineering fundamentals.</p>
-        </div>
-
-        <div class="timeline-item timeline-item--large">
-          <div class="timeline-dot"></div>
-          <div class="timeline-line"></div>
-          <div class="timeline-heading">
-            <span>2022–Present</span>
-            <span>UX/UI Designer at Wargaming</span>
-          </div>
-          <p class="body-text">Designing game UI at scale for World of Tanks — tackling complex in-game systems and live-service features played by millions of users worldwide.</p>
-        </div>
-
-        <div class="timeline-item timeline-item--small timeline-item--last">
-          <div class="timeline-dot"></div>
-          <h4 class="timeline-year">2025</h4>
-          <p class="body-text">Shipped two iOS apps — taking them from concept to App Store launch independently.</p>
-        </div>
-      </div>
-      </div><!-- /experience-layout -->
-    </section>
-
-    <!-- Footer quote -->
-    <section class="section section-footer">
-      <p class="h2">
-        I want to develop products that move humanity forward, making people healthier and more conscious.
-      </p>
-      <video class="footer-video" autoplay loop muted playsinline>
-        <source src="assets/footer.mp4" type="video/mp4" />
-      </video>
-    </section>
-
-  </main>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
