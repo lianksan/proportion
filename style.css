@@ -258,66 +258,6 @@ main {
   transform: rotate(-2deg);
 }
 
-.good-values {
-  position: absolute;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  z-index: 4;
-}
-
-.good-values.visible {
-  display: flex;
-}
-
-.good-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--pencil);
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.good-chip:hover {
-  color: var(--ink);
-}
-
-.good-val {
-  position: relative;
-  font-family: 'Caveat', cursive;
-  color: #6b21a8;
-  font-weight: 600;
-}
-
-.good-num {
-  font-family: 'Caveat', cursive;
-  font-weight: 600;
-}
-
-.good-val::after {
-  content: '';
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  top: 55%;
-  height: 28%;
-  background: rgba(190, 50, 120, 0.18);
-  border-radius: 2px;
-  transform: rotate(-1deg);
-  z-index: -1;
-}
-
-.good-chip:hover .good-val {
-  color: #6b21a8;
-}
-
 footer {
   position: fixed;
   bottom: 0;
@@ -433,10 +373,6 @@ footer {
   .credit {
     font-size: 14px;
   }
-
-  .good-chip {
-    font-size: 14px;
-  }
 }
 
 @media (max-width: 700px) {
@@ -518,10 +454,6 @@ footer {
   }
 
   .credit {
-    font-size: 12px;
-  }
-
-  .good-chip {
     font-size: 12px;
   }
 }
@@ -613,10 +545,6 @@ footer {
   }
 
   .credit {
-    font-size: 13px;
-  }
-
-  .good-chip {
     font-size: 13px;
   }
 }

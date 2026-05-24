@@ -10,7 +10,6 @@ const wrappers = [
   document.getElementById('wrapU'),
   document.getElementById('wrapJ'),
 ];
-const names = ['A', 'B', 'C', 'D'];
 const cellResults = [
   document.getElementById('resultR'),
   document.getElementById('resultF'),
@@ -18,7 +17,6 @@ const cellResults = [
   document.getElementById('resultJ'),
 ];
 const resultPositions = ['pos-top-left', 'pos-bottom-left', 'pos-top-right', 'pos-bottom-right'];
-const goodValuesEl = document.getElementById('goodValues');
 const equalsWrap = document.getElementById('equalsWrap');
 
 const navMap = {
@@ -123,51 +121,11 @@ function formatNum(n) {
   return n.toFixed(6).replace(/0+$/, '').replace(/\.$/, '');
 }
 
-const siblingMap = { 0: 1, 1: 0, 2: 3, 3: 2 };
-
-function findGoodThirdValues(vals, solvedIdx) {
-  const varIdx = siblingMap[solvedIdx];
-  const originalVal = vals[varIdx];
-
-  const results = [];
-  const seen = new Set();
-
-  for (let delta = -10; delta <= 10; delta++) {
-    if (delta === 0) continue;
-    const candidate = Math.round(originalVal) + delta;
-    if (candidate <= 0) continue;
-
-    const test = [...vals];
-    test[varIdx] = candidate;
-    test[solvedIdx] = null;
-
-    const sol = solve(test);
-    if (!sol) continue;
-    if (!Number.isInteger(sol.value) || sol.value <= 0) continue;
-
-    const full = [...test];
-    full[solvedIdx] = sol.value;
-
-    const key = full.join(',');
-    if (seen.has(key)) continue;
-    seen.add(key);
-
-    const dist = Math.abs(candidate - originalVal);
-    results.push({ values: full, changedIdx: varIdx, newThird: candidate, solvedVal: sol.value, distance: dist });
-  }
-
-  results.sort((a, b) => a.distance - b.distance);
-  return results.slice(0, 2);
-}
-
 function clearCellResults() {
   cellResults.forEach(r => {
     r.className = 'cell-result';
     r.innerHTML = '';
   });
-  goodValuesEl.className = 'good-values';
-  goodValuesEl.innerHTML = '';
-  goodValuesEl.style.transform = '';
 }
 
 function calculate() {
@@ -194,9 +152,6 @@ function calculate() {
 
   cells[sol.index].classList.add('is-result');
 
-  const fullVals = [...vals];
-  fullVals[sol.index] = sol.value;
-
   const resultEl = cellResults[sol.index];
   const posClass = resultPositions[sol.index];
   resultEl.className = 'cell-result visible ' + posClass;
@@ -212,48 +167,6 @@ function calculate() {
     _measure.style.fontSize = resultSize + 'px';
   }
   resultEl.style.fontSize = resultSize + 'px';
-
-  if (!Number.isInteger(sol.value)) {
-    const good = findGoodThirdValues(fullVals, sol.index);
-    if (good.length > 0) {
-      const isTop = posClass.includes('top');
-      goodValuesEl.className = 'good-values visible ' + (isTop ? 'gv-top' : 'gv-bottom');
-
-      let html = '';
-      for (const g of good) {
-        const changedName = names[g.changedIdx];
-        const solvedVal = g.values[sol.index];
-        html += `<span class="good-chip" data-values='${JSON.stringify(g.values)}'><span class="good-val">${solvedVal}</span> if ${changedName} = <span class="good-num">${g.newThird}</span></span>`;
-      }
-      goodValuesEl.innerHTML = html;
-
-      const mainRect = document.querySelector('main').getBoundingClientRect();
-      const resultRect = resultEl.getBoundingClientRect();
-      const resultCenterX = resultRect.left + resultRect.width / 2 - mainRect.left;
-      goodValuesEl.style.left = resultCenterX + 'px';
-      goodValuesEl.style.transform = 'translateX(-50%)';
-
-      if (isTop) {
-        goodValuesEl.style.top = (resultRect.top - mainRect.top - goodValuesEl.offsetHeight - 4) + 'px';
-        goodValuesEl.style.bottom = '';
-      } else {
-        goodValuesEl.style.top = (resultRect.bottom - mainRect.top + 4) + 'px';
-        goodValuesEl.style.bottom = '';
-      }
-
-      goodValuesEl.querySelectorAll('.good-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-          const v = JSON.parse(chip.dataset.values);
-          cells.forEach((c, i) => {
-            c.value = formatNum(v[i]);
-          });
-          updateWrapperStates();
-          cells.forEach(c => autoSizeFont(c));
-          calculate();
-        });
-      });
-    }
-  }
 }
 
 cells.forEach(c => {
