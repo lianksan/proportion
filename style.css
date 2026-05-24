@@ -291,7 +291,13 @@ main {
 
 .good-val {
   position: relative;
+  font-family: 'Caveat', cursive;
   color: #6b21a8;
+  font-weight: 600;
+}
+
+.good-num {
+  font-family: 'Caveat', cursive;
   font-weight: 600;
 }
 
@@ -300,8 +306,8 @@ main {
   position: absolute;
   left: -2px;
   right: -2px;
-  top: 40%;
-  height: 50%;
+  top: 55%;
+  height: 28%;
   background: rgba(190, 50, 120, 0.18);
   border-radius: 2px;
   transform: rotate(-1deg);
@@ -423,6 +429,14 @@ footer {
     padding: 0 5px;
     font-size: 11px;
   }
+
+  .credit {
+    font-size: 14px;
+  }
+
+  .good-chip {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -502,6 +516,14 @@ footer {
     font-size: 10px;
     border-bottom-width: 3px;
   }
+
+  .credit {
+    font-size: 12px;
+  }
+
+  .good-chip {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -509,17 +531,22 @@ footer {
     --line-width: 3.5;
   }
 
+  body {
+    min-height: 100dvh;
+    padding-bottom: 40px;
+  }
+
   .cell-wrapper {
     width: 38vw;
-    height: 22vw;
+    height: 25vw;
   }
 
   .cell-label {
-    font-size: 13vw;
+    font-size: 15vw;
   }
 
   .cell {
-    font-size: 13vw;
+    font-size: 15vw;
   }
 
   .fraction-bar {
@@ -536,12 +563,16 @@ footer {
 
   .equals-wrap {
     width: 6vw;
-    height: 18vw;
+    height: 20vw;
   }
 
   .equals-svg {
     width: 5vw;
     height: 4vw;
+  }
+
+  .equals-svg line {
+    vector-effect: non-scaling-stroke;
   }
 
   .equals-strike {
@@ -550,7 +581,7 @@ footer {
   }
 
   .cell-result {
-    font-size: 13vw;
+    font-size: 15vw;
   }
 
   .cell-result.pos-top-left,
@@ -582,6 +613,10 @@ footer {
   }
 
   .credit {
+    font-size: 13px;
+  }
+
+  .good-chip {
     font-size: 13px;
   }
 }

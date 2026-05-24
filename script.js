@@ -52,7 +52,7 @@ document.body.appendChild(_measure);
 
 function getBaseSize() {
   const w = window.innerWidth;
-  if (w <= 480) return Math.round(w * 0.13);
+  if (w <= 480) return Math.round(w * 0.15);
   if (w <= 700) return 80;
   if (w <= 960) return 110;
   return 160;
@@ -223,7 +223,7 @@ function calculate() {
       for (const g of good) {
         const changedName = names[g.changedIdx];
         const solvedVal = g.values[sol.index];
-        html += `<span class="good-chip" data-values='${JSON.stringify(g.values)}'><span class="good-val">${solvedVal}</span> if ${changedName} = ${g.newThird}</span>`;
+        html += `<span class="good-chip" data-values='${JSON.stringify(g.values)}'><span class="good-val">${solvedVal}</span> if ${changedName} = <span class="good-num">${g.newThird}</span></span>`;
       }
       goodValuesEl.innerHTML = html;
 
