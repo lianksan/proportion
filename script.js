@@ -305,5 +305,21 @@ window.addEventListener('resize', () => {
   calculate();
 });
 
-cells[0].focus();
+// Only auto-focus on desktop; skip on mobile to avoid keyboard popup
+const isMobile = window.innerWidth <= 480 || 'ontouchstart' in window;
+if (!isMobile) {
+  cells[0].focus();
+}
+
+// Fix iOS zoom getting stuck after keyboard dismiss
+if ('ontouchstart' in window) {
+  cells.forEach(c => {
+    c.addEventListener('blur', () => {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
+    });
+  });
+}
+
 calculate();
